@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import phonebookActions from "../../redux/phonebook/phonebookActions";
 import styles from "./Filter.module.css";
+import phonebookSelectors from "../../redux/phonebook/phonebookSelectors";
 
 const Filter = ({ filter, onChange }) => {
   const handleChange = (e) => {
@@ -17,13 +18,8 @@ const Filter = ({ filter, onChange }) => {
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = ({ contacts }) => ({
-  filter: contacts.filter,
+const mapStateToProps = (state) => ({
+  filter: phonebookSelectors.getFilter(state),
 });
 
 const mapDispatchToprops = {

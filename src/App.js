@@ -7,6 +7,7 @@ import phonbookOperation from "./redux/phonebook/phonebookOperation";
 import Container from "./shared/Container";
 import "./App.css";
 import { connect } from "react-redux";
+import phonebookSelectors from './redux/phonebook/phonebookSelectors'
 
 class App extends Component {
   componentDidMount() {
@@ -37,8 +38,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ contacts }) => ({
-  contacts: contacts.items,
+const mapStateToProps = state => ({
+  contacts: phonebookSelectors.getContacts(state),
 });
 
 const mapDispatchToProps = {

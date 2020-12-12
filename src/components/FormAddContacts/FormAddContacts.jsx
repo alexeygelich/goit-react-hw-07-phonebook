@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import phonebookOperations from "../../redux/phonebook/phonebookOperation";
 import Alert from "../../shared/Alert";
 import styles from "./FormAddContacts.module.css";
+import phonebookSelectors from "../../redux/phonebook/phonebookSelectors";
 
 class FormAddContacts extends Component {
   state = {
@@ -91,8 +92,8 @@ class FormAddContacts extends Component {
   }
 }
 
-const mapStateToProps = ({ contacts }) => ({
-  contacts: contacts.items,
+const mapStateToProps = (state) => ({
+  contacts: phonebookSelectors.getContacts(state),
 });
 
 const mapDispatchToprops = {

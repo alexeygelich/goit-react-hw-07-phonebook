@@ -2,21 +2,16 @@ import React from "react";
 import ContactItem from "./ContactItem";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
+import phonebookSelectors from "../../redux/phonebook/phonebookSelectors";
 import "./ContactList.css";
 
-const ContactList = ({ contacts, filter }) => {
-  const getFiteredContact = (items, query) => {
-    return items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase()));
-  };
-
-  const visibleContacts = getFiteredContact(contacts, filter);
-
+const ContactList = ({ visibleContacts }) => {
   return (
     <TransitionGroup component="ul" className="contact-list">
       {visibleContacts.map((el) => {
         return (
           <CSSTransition key={el.id} timeout={500} classNames="item">
-            <ContactItem el={el} />
+            <ContactItem id={el.id} />
           </CSSTransition>
         );
       })}
@@ -24,9 +19,8 @@ const ContactList = ({ contacts, filter }) => {
   );
 };
 
-const mapStateToProps = ({ contacts }) => ({
-  contacts: contacts.items,
-  filter: contacts.filter,
+const mapStateToProps = (state) => ({
+  visibleContacts: phonebookSelectors.getVisibleContacts(state),
 });
 
 export default connect(mapStateToProps)(ContactList);

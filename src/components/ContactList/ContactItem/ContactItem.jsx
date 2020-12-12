@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./ContactItem.module.css";
 import { connect } from "react-redux";
 import phonebookOperation from "../../../redux/phonebook/phonebookOperation";
+import phonebookSelectors from "../../../redux/phonebook/phonebookSelectors";
 
-const ContactItem = ({ el, handleDelete }) => {
-  const { name, number, id } = el;
+const ContactItem = ({ name, number, id, handleDelete }) => {
   const handleClick = () => {
     handleDelete(id);
   };
@@ -19,13 +18,12 @@ const ContactItem = ({ el, handleDelete }) => {
   );
 };
 
-ContactItem.propTypes = {
-  el: PropTypes.object.isRequired,
-  handleDelete: PropTypes.func.isRequired,
-};
+const mapStateToProps = (state, ownProps) => ({
+  ...phonebookSelectors.getContactById(state, ownProps.id),
+});
 
 const mapDispatchToProps = {
   handleDelete: phonebookOperation.removeContact,
 };
 
-export default connect(null, mapDispatchToProps)(ContactItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactItem);
