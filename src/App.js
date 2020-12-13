@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import FormAddContacts from "./components/FormAddContacts";
-import Filter from "./components/Filter";
-import ContactList from "./components/ContactList";
+import FormAddContactsContainer from "./components/FormAddContacts/FormAddContactsContainer";
+import FilterContainer from "./components/Filter/FilterContainer";
+import ContactListContainer from "./components/ContactList/ContactListContainer";
 import { CSSTransition } from "react-transition-group";
-import phonbookOperation from "./redux/phonebook/phonebookOperation";
 import Container from "./shared/Container";
 import "./App.css";
-import { connect } from "react-redux";
-import phonebookSelectors from './redux/phonebook/phonebookSelectors'
 
 class App extends Component {
   componentDidMount() {
@@ -23,27 +20,19 @@ class App extends Component {
           <CSSTransition in={true} appear={true} timeout={500} classNames="fade-logo" unmountOnExit>
             <h2 className="logo">Phonebook</h2>
           </CSSTransition>
-          <FormAddContacts />
+          <FormAddContactsContainer />
         </section>
         <section>
           <h2>Contacts</h2>
           <CSSTransition in={contacts.length > 1} timeout={500} classNames="fade-filter" unmountOnExit>
-            <Filter />
+            <FilterContainer />
           </CSSTransition>
 
-          <ContactList />
+          <ContactListContainer />
         </section>
       </Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  contacts: phonebookSelectors.getContacts(state),
-});
-
-const mapDispatchToProps = {
-  fetchContact: phonbookOperation.fetchContact,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
