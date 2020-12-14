@@ -2,20 +2,23 @@
 .item-enter {
   opacity: 0;
   transform: translateX(-100%);
+  transition: 500ms ease-in;
 }
+
 .item-enter-active {
   opacity: 1;
   transform: translateX(0);
-  transition: 500ms ease-in;
 }
+
 .item-exit {
   transform: translateX(0);
   opacity: 1;
+  transition: 500ms ease-in;
 }
+
 .item-exit-active {
   opacity: 0;
   transform: translateX(-100%);
-  transition: 500ms ease-in;
 }
 
 .contact-list {

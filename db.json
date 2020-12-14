@@ -1,34 +1,9 @@
 {
   "contacts": [
     {
-      "name": "cat",
-      "number": "4564645",
-      "id": 9
-    },
-    {
-      "name": "cat45",
-      "number": "444444",
-      "id": 10
-    },
-    {
-      "name": "qwe",
-      "number": "24",
-      "id": 11
-    },
-    {
-      "name": "wrwerwrwer",
-      "number": "23424234234",
-      "id": 12
-    },
-    {
-      "name": "dddddd",
-      "number": "33333",
-      "id": 13
-    },
-    {
-      "name": "yyy",
-      "number": "4444",
-      "id": 14
+      "name": "fsdfsdf",
+      "number": "1231231",
+      "id": 1
     }
   ]
 }
